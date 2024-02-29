@@ -23,7 +23,11 @@
 		{% endif %}
 
         {{ form.as_p }}
-        <button type="submit" class="btn btn-secondary">Register</button>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary rounded-0">Register</button>
+            <a class="btn btn-secondary rounded-0 mb-5" href="{% url 'home' %}">Return</a>
+        </div>
     </form>
 </div>
 {% endblock %}

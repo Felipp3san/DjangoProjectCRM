@@ -6,35 +6,38 @@
 
 {% block content %}
 
-<div class="col-md-6 offset-md-3">
+<div class="col-md-6 align-center">
 
     {% if user.is_authenticated %}
 
-<!-- Código caso o utilizador esteja logado -->
+    <!-- Código caso o utilizador esteja logado -->
 
     {% else %}
-    <h1 class="mb-5 mt-5">Login</h1>
-    <form method="POST" action="{% url 'home' %}">
-        {% csrf_token %}
-        <form>
-            <div class="mb-3">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control rounded-0" id="floatingInput" name="username" placeholder="username">
-                    <label for="floatingInput">Username</label>
-                </div>
-            <div class="mt-3 mb-3">
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control rounded-0" id="floatingInput" name="password" placeholder="password">
-                    <label for="floatingInput">Password</label>
-                </div>
-            </div>
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary rounded-0">Login</button>
-                <a class="btn btn-secondary rounded-0" href="{% url 'register' %}">Register</a>
-            </div>
+    <div class="bg-dark border rounded p-5">
+        <h1 class="mb-5 text-center text-light">Login</h1>
+        <form method="POST" action="{% url 'home' %}">
+            {% csrf_token %}
+            <form>
+                <div class="mb-3">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control rounded-0" id="floatingInput" name="username"
+                            placeholder="username">
+                        <label for="floatingInput">Username</label>
+                    </div>
+                    <div class="mt-3 mb-3">
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-0" id="floatingInput" name="password"
+                                placeholder="password">
+                            <label for="floatingInput">Password</label>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary rounded-0">Login</button>
+                        <a class="btn btn-secondary rounded-0" href="{% url 'register' %}">Register</a>
+                    </div>
+            </form>
         </form>
-    </form>
-
+    </div>
     {% endif %}
 </div>
 {% endblock %}

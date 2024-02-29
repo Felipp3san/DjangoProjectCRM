@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Account Info</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="col-md-8 align-center border rounded border-2 custom-border-color">
+    <div class="offset-md-1">
+        <h3 class="mb-5 mt-5">Account Info</h1>
+            <form method="POST">
+                {% csrf_token %}
+
+                {% if user.is_authenticated %}
+                <div>
+
+                    <table class="table table-hover mb-0 text align-middle">
+                        <tbody>
+                            <tr class="cursor-pointer" onclick="location.href='{% url 'home' %}'">
+                                <th scope="row">First name</th>
+                                <td class="fs-5">{{ user.first_name }}</td>
+                                <td><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                            </tr>
+                            <tr class="cursor-pointer">
+                                <th scope="row">Last name</th>
+                                <td class="fs-5">{{ user.last_name }}</td>
+                                <td><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                            </tr>
+                            <tr class="cursor-pointer">
+                                <th scope="row">Email</th>
+                                <td class="fs-5">{{ user.email }}</td>
+                                <td><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                            </tr>
+                            <tr class="cursor-pointer" onclick="location.href='{% url 'home' %}'">
+                                <th scope="row">Username</th>
+                                <td class="fs-5">{{ user.username }}</td>
+                                <td><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                            </tr>
+                            <tr class="cursor-pointer last-tr">
+                                <th scope="row"> Change Password</th>
+                                <td></td>
+                                <td><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    {% endif %}
+                </div>
+    </div>
+    </form>
+</div>
+{% endblock %}

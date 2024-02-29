@@ -5,7 +5,6 @@ from . import forms
 from .models import Task, User
 
 def home(request):
-    #Logging in
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -15,20 +14,26 @@ def home(request):
         
         if user is not None:
             login(request, user)
-            messages.success(request, "You Have Been Logged In!")
+            messages.success(request, "You have been logged in!")
             return redirect('tasks')
         else:
-            messages.error(request, "There Was An Error Logging In, Please Try Again...")
+            messages.error(request, "There was an error while trying to login. Please try again...")
             return redirect('home')
     else:    
-        return render(request, 'home.html', {})
+        user = request.user
+        if user.is_authenticated:
+            return redirect('tasks')
+        else:
+            return render(request, 'home.html', {})
 
 
 def logout_user(request):
     logout(request)
-    messages.error(request, "You Have Been Logged Out...")
+    messages.error(request, "You have been logged out...")
     return redirect('home')
 
+def account(request):
+    return render(request, 'account.html', {})
 
 def register_user(request):
     if request.method == 'POST':
@@ -43,14 +48,13 @@ def register_user(request):
             user = authenticate(request, username=username, password=password)
             login(request, user)
 
-            messages.success(request, "You Have Successfully Registered! Welcome!")
+            messages.success(request, "You have successfully registered! Welcome!")
             return redirect('tasks')
         else:
             return render(request, 'register.html', {'form': form})
     else:
         form = forms.SignUpForm()
         return render(request, 'register.html', {'form': form})
-
 
 def users(request):
     if request.method == 'POST':
@@ -63,6 +67,8 @@ def users(request):
 def delete_user(request, user_id):
     pass
 
+def edit_user(request, user_id):
+    pass
 
 def tasks(request):
     if request.method == 'POST':

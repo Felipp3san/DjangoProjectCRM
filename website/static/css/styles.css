@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box
+}
+
+:root {
+    --nav-height: 70px; /*You HAVE To Give A Default Fallback Value*/
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.height-navbar {
+    height: var(--nav-height);
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - var(--nav-height));
+    max-width: 100%;
+    max-height: calc(100% - var(--nav-height));
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    max-height: 100%;
+    display: block;
+}
+
+.align-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.message-div {
+    display: block;
+}
+
+
+
+
+/* ACCOUNT MANAGAMENT TABLE */
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.custom-border-color {
+    border-color: lightgray;
+}
+
+.last-tr {
+    border-color: transparent;
+}

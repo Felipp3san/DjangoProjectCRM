@@ -5,7 +5,9 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-md-12 mt-5">
+<div class="col-md-12">
+
+    <h1 class="mb-5 mt-5 text-center">Task Manager</h1>
 
     {% if tasks|length < 1 %} 
     <h1 class="text-center h3 mb-5">No tasks available. Create one below!</p>
@@ -39,7 +41,7 @@
     <form method="POST">
         {% csrf_token %}
         <div class="input-group mb-3">
-            <input class="form-control border-dark bg-light rounded-0" type="text" name="content">
+            <input class="form-control border-dark bg-light rounded-0 mb-5" type="text" name="content">
             <div class="input-group-append">
                 <input class="btn bg-dark text-light ml-1 rounded-0" type="submit" value="Add Task">
             </div>
