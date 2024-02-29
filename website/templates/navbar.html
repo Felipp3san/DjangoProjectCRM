@@ -12,6 +12,14 @@
                     <a class="nav-link" style="cursor: default;">Welcome {{ user.get_username }}!</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'tasks' %}">Tasks</a>
+                </li>
+                {% if user.is_superuser %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users' %}">Users</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>
                 {% else %}

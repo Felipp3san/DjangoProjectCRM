@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Task Page</title>
+{% endblock %}
+
+{% block content %}
+<div class="col-md-12 mt-5">
+
+    {% if tasks|length < 1 %} 
+    <h1 class="text-center h3 mb-5">No tasks available. Create one below!</p>
+
+    {% else %}
+
+    <table class="table table-striped table-bordered table-hover ">
+        <thead class="text-center table-dark">
+            <tr>
+                <th class="h4" scope="col ">Task</th>
+                <th class="h4" scope="col">Added</th>
+                <th class="h4" scope="col">Actions</th>
+            </tr>
+        </thead>
+        {% for task in tasks %}
+        <tbody class="border-dark">
+            <tr>
+                <td class="border-dark text-center align-middle">{{ task.content }}</td>
+                <td class="border-dark text-center align-middle">{{ task.date_created }}</td>
+                <td class="border-dark text-center">
+                    <a class="btn btn-outline-danger" href="{% url 'delete_task' task.id %}">Delete</a>
+                    <a class="btn btn-outline-success" href="{% url 'update_task' task.id %}">Update</a>
+                </td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <input class="form-control border-dark bg-light rounded-0" type="text" name="content">
+            <div class="input-group-append">
+                <input class="btn bg-dark text-light ml-1 rounded-0" type="submit" value="Add Task">
+            </div>
+        </div>
+    </form>
+    
+</div>
+{% endblock %}
