@@ -1,6 +1,8 @@
+import requests
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.http import JsonResponse
 from . import forms
 from .models import Task, User
 
@@ -32,8 +34,10 @@ def logout_user(request):
     messages.error(request, "You have been logged out...")
     return redirect('home')
 
+
 def account(request):
     return render(request, 'account.html', {})
+
 
 def register_user(request):
     if request.method == 'POST':
@@ -56,6 +60,7 @@ def register_user(request):
         form = forms.SignUpForm()
         return render(request, 'register.html', {'form': form})
 
+
 def users(request):
     if request.method == 'POST':
         pass
@@ -67,8 +72,10 @@ def users(request):
 def delete_user(request, user_id):
     pass
 
+
 def edit_user(request, user_id):
     pass
+
 
 def tasks(request):
     if request.method == 'POST':
@@ -103,4 +110,18 @@ def update_task(request, task_id):
 def delete_task(request, task_id):
     task = Task.objects.filter(id=task_id)
     task.delete()
+    return redirect('tasks')
+
+
+def generate_task(request):
+    url = 'https://www.boredapi.com/api/activity/'
+    response = requests.get(url)
+
+    data = response.json()
+    user_id = request.user.id
+
+    content = data["activity"]
+    task = Task(content=content, user_id=user_id)
+    task.save()
+
     return redirect('tasks')

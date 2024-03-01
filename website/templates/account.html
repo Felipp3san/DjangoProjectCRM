@@ -6,47 +6,101 @@
 
 {% block content %}
 
-<div class="col-md-8 align-center border rounded border-2 custom-border-color">
+<div class="col-md-8 align-center border rounded border-2 custom-border-color bg-light">
     <div class="offset-md-1">
         <h3 class="mb-5 mt-5">Account Info</h1>
-            <form method="POST">
-                {% csrf_token %}
-
-                {% if user.is_authenticated %}
-                <div>
-
-                    <table class="table table-hover mb-0 text align-middle">
-                        <tbody>
-                            <tr class="cursor-pointer" onclick="location.href='{% url 'home' %}'">
-                                <th scope="row">First name</th>
-                                <td class="fs-5">{{ user.first_name }}</td>
-                                <td><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
-                            </tr>
-                            <tr class="cursor-pointer">
-                                <th scope="row">Last name</th>
-                                <td class="fs-5">{{ user.last_name }}</td>
-                                <td><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
-                            </tr>
-                            <tr class="cursor-pointer">
-                                <th scope="row">Email</th>
-                                <td class="fs-5">{{ user.email }}</td>
-                                <td><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
-                            </tr>
-                            <tr class="cursor-pointer" onclick="location.href='{% url 'home' %}'">
-                                <th scope="row">Username</th>
-                                <td class="fs-5">{{ user.username }}</td>
-                                <td><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
-                            </tr>
-                            <tr class="cursor-pointer last-tr">
-                                <th scope="row"> Change Password</th>
-                                <td></td>
-                                <td><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    {% endif %}
-                </div>
+            {% if user.is_authenticated %}
+            <div>
+                <table class="table mb-0 align-middle table-hover">
+                    <tbody>
+                        <tr class="accordion">
+                            <th class="bg-light" scope="row">First name</th>
+                            <td class="bg-light fs-5">{{ user.first_name }}</td>
+                            <td class="bg-light text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                        </tr>
+                        <tr class="panel">
+                            <td class="bg-light text-end" scope="row">Edit first name</th>
+                            <td class=" bg-light align-middle edit-section-row"><input class="form-control rounded-0" type="text"
+                                    name="edit-input"></td>
+                            <td class="bg-light text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                        </tr>
+                        <tr class="accordion">
+                            <th class="bg-light" scope="row">Last name</th>
+                            <td class="bg-light fs-5">{{ user.last_name }}</td>
+                            <td class="bg-light text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                        </tr>
+                        <tr class="panel">
+                            <td class="text-end" scope="row">Edit last name</th>
+                            <td class="align-middle edit-section-row"><input class="form-control rounded-0" type="text"
+                                    name="edit-input"></td>
+                            <td class="text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                        </tr>
+                        <tr class="accordion">
+                            <th class="bg-light" scope="row">Email</th>
+                            <td class="bg-light fs-5">{{ user.email }}</td>
+                            <td class="text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                        </tr>
+                        <tr class="panel">
+                            <td class="bg-light text-end" scope="row">New email</th>
+                            <td class="bg-light align-middle edit-section-row"><input class="form-control rounded-0" type="text"
+                                    name="edit-input"></td>
+                            <td class="bg-light text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                        </tr>
+                        <tr class="accordion">
+                            <th class="bg-light" scope="row">Username</th>
+                            <td class="bg-light fs-5">{{ user.username }}</td>
+                            <td class="bg-light text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                        </tr>
+                        <tr class="panel">
+                            <td class="bg-light text-end" scope="row">New username</th>
+                            <td class="bg-light align-middle edit-section-row"><input class="form-control rounded-0" type="text"
+                                    name="edit-input"></td>
+                            <td class="bg-light text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                        </tr>
+                        <tr class="accordion last-tr">
+                            <th class="bg-light" scope="row"> Change Password</th>
+                            <td class="bg-light"></td>
+                            <td class="bg-light text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                        </tr>
+                        <tr class="panel last-tr">
+                            <th class="bg-light"></th>
+                            <td class="bg-light">
+                                <p>New password<input type="text" class="form-control rounded-0" /></p>
+                                <p>Confirm password<input type="text" class="form-control rounded-0" /></p>
+                                <p class="align-center">
+                                <div class="d-grid gap-2"><a class="btn btn-primary rounded-0" href="#">Update
+                                        Password</a></div>
+                                </p>
+                            </td>
+                            <td class="bg-light"></td>
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
     </div>
-    </form>
 </div>
+
+<script>
+    const rowLinks = document.getElementsByClassName("accordion");
+
+    for (let i = 0; i < rowLinks.length; i++) {
+
+        rowLinks[i].addEventListener('click', function (event) {
+
+            var lastTd = this.lastElementChild;
+            var panel = this.nextElementSibling;
+
+            if (panel.style.display != "table-row") {
+                this.nextElementSibling.style.display = "table-row";
+                lastTd.innerHTML = "<i class='bi bi-chevron-down' style='font-size:24px'></i>";
+            }
+            else {
+                this.nextElementSibling.style.display = "none";
+                lastTd.innerHTML = "<i class='bi bi-chevron-right' style='font-size:24px'></i>";
+            }
+        });
+
+    }
+
+</script>
 {% endblock %}

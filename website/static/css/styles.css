@@ -44,12 +44,36 @@ body {
 }
 
 
+/* GENERATE TASK CONTAINER */
+.generate-container {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 40px;
+}
+
+#spinner-box {
+    margin: 20px auto;
+    display: block;
+}
 
 
 /* ACCOUNT MANAGAMENT TABLE */
 
-.cursor-pointer {
+.accordion {
     cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    outline: none;
+    transition: 0.4s;
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
 }
 
 .custom-border-color {
@@ -58,4 +82,8 @@ body {
 
 .last-tr {
     border-color: transparent;
+}
+
+.edit-section-row {
+    height: 100px;
 }
