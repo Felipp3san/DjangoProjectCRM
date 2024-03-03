@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>User Management</title>
+{% endblock %}
+
+{% block content %}
+
+{% if form.instance %}
+<h1 class="mb-5 mt-5 text-center">Edit User</h1>
+{% else %}
+<h1 class="mb-5 mt-5 text-center">Add User</h1>
+{% endif %}
+
+<div class="col-md-8 align-center border rounded border-2 custom-border-color bg-light p-5">
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary rounded-0" type="submit">Save</button>
+            <a class="btn btn-secondary rounded-0" href="{% url 'users' %}">Return</a>
+        </div>
+    </form>
+
+</div>
+{% endblock %}

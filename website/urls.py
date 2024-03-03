@@ -11,9 +11,12 @@ urlpatterns = [
     path('users/', views.users, name='users'),
     path('users/delete/<int:user_id>', views.delete_user, name='delete_user'),
     path('users/edit/<int:user_id>', views.edit_user, name='edit_user'),
+    path('users/add/', views.add_user, name='add_user'),
     path('tasks/', views.tasks, name='tasks'),
+    path('tasks/<int:user_id>', views.tasks_admview, name='tasks_admview'),
     path('tasks/update/<int:task_id>', views.update_task, name='update_task'),
+    path('tasks/update/<int:task_id>/<int:user_id>', views.update_task_adminview, name='update_task_adminview'),
     path('tasks/delete/<int:task_id>', views.delete_task, name='delete_task'),
-    path('tasks/generate_tasks/', views.generate_task, name='generate_task'),
-
+    path('tasks/delete/<int:task_id>/<int:user_id>', views.delete_task_adminview, name='delete_task_adminview'),
+    path('tasks/generate_tasks/', views.generate_task, name='generate_task'),   
 ]
