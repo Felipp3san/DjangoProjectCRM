@@ -113,7 +113,24 @@ def edit_user(request, user_id):
             return redirect('users')
     else:
         form = forms.EditUserForm(instance=user)
-        return render(request, 'add_edit_user.html', {'form': form})
+        return render(request, 'add_edit_user.html', {'form': form, 'user': user })
+    
+@staff_member_required    
+def change_password(request, user_id):
+
+    user = User.objects.get(id=user_id)
+
+    if request.method == 'POST':
+        form = forms.ChangePasswordFormAdmin(user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('edit_user', user_id)
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = forms.ChangePasswordFormAdmin(user)
+    return render(request, 'change_password.html', {'form': form})
     
 
 @staff_member_required

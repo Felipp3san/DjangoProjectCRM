@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
-from django.forms import ModelForm
+from django.forms import ModelForm, ValidationError
 from django import forms
 
 class SignUpForm(UserCreationForm):
@@ -118,3 +118,31 @@ class EditUserForm(UserChangeForm):
         self.fields['is_active'].help_text = '<span class="form-text text-muted"><small>Designates whether this user should be treated as active. Unselect this instead of deleting accounts.</small></span>' 
 
         self.fields['password'].widget = forms.HiddenInput()
+
+
+class ChangePasswordFormAdmin(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(ChangePasswordFormAdmin, self).__init__(*args, **kwargs)
+
+        self.fields['old_password'].widget.attrs['class'] = 'form-control mb-3 rounded-0'
+        self.fields['new_password1'].widget.attrs['class'] = 'form-control mb-3 rounded-0'
+        self.fields['new_password1'].help_text = '' 
+        self.fields['new_password2'].widget.attrs['class'] = 'form-control mb-3 rounded-0'
+
+    def clean_new_password1(self):
+        new_password1 = self.cleaned_data.get('new_password1')
+        new_password2 = self.cleaned_data.get('new_password2')
+
+        if new_password1 and new_password2:
+            if new_password1 != new_password2:
+                raise ValidationError("The two password fields didn't match.")
+        return new_password1
+    
+    def clean_new_password2(self):
+        new_password1 = self.cleaned_data.get('new_password1')
+        new_password2 = self.cleaned_data.get('new_password2')
+
+        if new_password1 and new_password2:
+            if new_password1 != new_password2:
+                raise ValidationError("The two password fields didn't match.")
+        return new_password1
