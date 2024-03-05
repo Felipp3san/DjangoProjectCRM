@@ -124,10 +124,14 @@ class ChangePasswordFormAdmin(PasswordChangeForm):
     def __init__(self, *args, **kwargs):
         super(ChangePasswordFormAdmin, self).__init__(*args, **kwargs)
 
-        self.fields['old_password'].widget.attrs['class'] = 'form-control mb-3 rounded-0'
+        self.fields['old_password'].widget = forms.HiddenInput()
+        self.fields['old_password'].required = False       
         self.fields['new_password1'].widget.attrs['class'] = 'form-control mb-3 rounded-0'
         self.fields['new_password1'].help_text = '' 
         self.fields['new_password2'].widget.attrs['class'] = 'form-control mb-3 rounded-0'
+
+    def clean_old_password(self):
+        pass
 
     def clean_new_password1(self):
         new_password1 = self.cleaned_data.get('new_password1')

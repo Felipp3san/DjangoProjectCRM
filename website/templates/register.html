@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-md-6 offset-md-3">
-    <h1 class="mb-5 mt-5">Register</h1>
+<h1 class="mb-5 mt-5 text-center">Register</h1>
+<div class="col-md-6 align-center bg-light p-5 mb-5">
     <form method="POST">
         {% csrf_token %}
 
@@ -25,8 +25,8 @@
         {{ form.as_p }}
 
         <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary rounded-0">Register</button>
-            <a class="btn btn-secondary rounded-0 mb-5" href="{% url 'home' %}">Return</a>
+            <button type="submit" class="btn btn-dark rounded-0">Register</button>
+            <a class="btn btn-transparent rounded-0" href="{% url 'home' %}">Return</a>
         </div>
     </form>
 </div>

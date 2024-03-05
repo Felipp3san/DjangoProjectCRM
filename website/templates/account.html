@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block content %}
+<h1 class="mb-5 mt-5 text-center">Account Info</h1>
 
-<div class="col-md-8 align-center border rounded border-2 custom-border-color bg-light">
+<div class="col-md-8 align-center bg-light pl-5 pt-5">
     <div class="offset-md-1">
-        <h3 class="mb-5 mt-5">Account Info</h1>
             {% if user.is_authenticated %}
             <div>
                 <table class="table mb-0 align-middle table-hover">
@@ -68,7 +68,7 @@
                                 <p>New password<input type="text" class="form-control rounded-0" /></p>
                                 <p>Confirm password<input type="text" class="form-control rounded-0" /></p>
                                 <p class="align-center">
-                                <div class="d-grid gap-2"><a class="btn btn-primary rounded-0" href="#">Update
+                                <div class="d-grid gap-2"><a class="btn btn-dark rounded-0" href="#">Update
                                         Password</a></div>
                                 </p>
                             </td>

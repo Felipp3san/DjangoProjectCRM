@@ -197,6 +197,7 @@ def update_task(request, task_id):
 
 @staff_member_required
 def update_task_adminview(request, task_id, user_id):
+
     if request.method == 'POST':
         
         task = Task.objects.get(id=task_id)
@@ -209,7 +210,7 @@ def update_task_adminview(request, task_id, user_id):
         return redirect('tasks_admview', user_id=user_id)
     else:
         task = Task.objects.get(id=task_id)
-        return render(request, 'update.html', {'task': task})
+        return render(request, 'update_admin.html', {'task': task, 'user_id': user_id })
 
 
 @login_required
