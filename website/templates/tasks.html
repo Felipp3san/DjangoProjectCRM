@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-md-12">
+<div id="main-div" class="col-md-12">
 
     <h1 class="mb-5 mt-5 text-center text-dark">Task Manager</h1>
 
@@ -57,16 +57,27 @@
                     href="{% url 'generate_task' %}">Generate a Task</a>
         </div>
 
-        <script>
-
-            const generateButton = document.getElementById("generate-button")
-            const spinnerBox =  '<div class="spinner-border hide-div" role="status"></div>'
-            const parent = document.getElementById("spinner-box")
-
-            generateButton.onclick = () => {
-                parent.innerHTML = spinnerBox;
-            }
-
-        </script>
 </div>
+
+<script>
+
+    const generateButton = document.getElementById("generate-button")
+    const spinnerBox =  '<div class="spinner-border hide-div" role="status"></div>'
+    const parent = document.getElementById("spinner-box")
+
+    generateButton.onclick = () => {
+        parent.innerHTML = spinnerBox;
+        const resizeObserver = new ResizeObserver(entries => {
+
+        for (let entry of entries) {
+
+            const newHeight = entry.contentRect.height;
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+        });
+
+        resizeObserver.observe(document.body);
+    }
+    
+</script>
 {% endblock %}

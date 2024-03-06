@@ -150,3 +150,11 @@ class ChangePasswordFormAdmin(PasswordChangeForm):
             if new_password1 != new_password2:
                 raise ValidationError("The two password fields didn't match.")
         return new_password1
+    
+class ChangePasswordForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(ChangePasswordForm, self).__init__(*args, **kwargs)
+  
+        self.fields['old_password'].widget.attrs['class'] = 'form-control mb-3 rounded-0'
+        self.fields['new_password1'].widget.attrs['class'] = 'form-control mb-3 rounded-0'
+        self.fields['new_password2'].widget.attrs['class'] = 'form-control mb-3 rounded-0'

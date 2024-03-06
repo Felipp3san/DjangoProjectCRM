@@ -1,5 +1,6 @@
 import requests
 from django.shortcuts import render, redirect
+from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
@@ -41,8 +42,44 @@ def logout_user(request):
 
 
 @login_required
-def account(request):
-    return render(request, 'account.html', {})
+def account(request):   
+    if request.method == 'POST':
+        form = forms.ChangePasswordForm(request.user, request.POST)
+        if 'firstname_button' in request.POST and request.POST['firstname_button'] == 'clicked':
+            try:
+                request.user.first_name = request.POST["firstname-input"]
+                request.user.save()
+                messages.success(request, 'Your first name was updated!')
+            except:
+                messages.error(request, 'An error has occurred when trying to update your first name.')
+        elif 'lastname_button' in request.POST and request.POST['lastname_button'] == 'clicked':
+            try:
+                request.user.last_name = request.POST["lastname-input"]
+                request.user.save()
+                messages.success(request, 'Your last name was updated!')
+            except:
+                messages.error(request, 'An error has occurred when trying to update your first name.')
+        elif 'email_button' in request.POST and request.POST['email_button'] == 'clicked':
+            try:
+                request.user.email = request.POST["email-input"]
+                request.user.save()
+                messages.success(request, 'Your email was updated!')
+            except:
+                messages.error(request, 'An error has occurred when trying to update your email.')
+        elif 'username_button' in request.POST and request.POST['username_button'] == 'clicked':
+            request.user.username = request.POST["username-input"]
+            request.user.save()
+            messages.success(request, 'Your username was updated!')
+        else:
+            if form.is_valid():
+                user = form.save()
+                update_session_auth_hash(request, user)
+                messages.success(request, 'Your password was updated!')
+            else:
+                messages.error(request, 'An error has occurred when trying to update your password.')
+    else:
+        form = forms.ChangePasswordForm(request.user)
+    return render(request, 'account.html', {'form': form})
 
 
 def register_user(request):
