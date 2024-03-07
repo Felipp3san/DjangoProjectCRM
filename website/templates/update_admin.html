@@ -12,7 +12,8 @@
     <form method="POST">
         {% csrf_token %}
         <div class="form-floating mb-3">
-        <input id="update-task-input" class="form-control bg-light rounded-0" type="text" name="content" value="{{ task.content }}">
+            <input id="update-task-input" class="form-control bg-light rounded-0" type="text" name="content"
+                value="{{ task.content }}">
             <label for="update-task-input">Description</label>
         </div>
 
@@ -22,4 +23,4 @@
         </div>
     </form>
 </div>
-{% endblock %}  
+{% endblock %}

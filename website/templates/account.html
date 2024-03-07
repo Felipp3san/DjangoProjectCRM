@@ -8,8 +8,9 @@
 
 <h1 class="mb-5 mt-5 text-center">Account Info</h1>
 
-<div class="col-md-8 align-center bg-light pl-5 pt-5">
-    <div class="offset-md-1">
+<div class="col-md-8 align-center">
+    <div class="bg-light pl-5 pt-5">
+        <div class="offset-md-1">
             {% if user.is_authenticated %}
             <div>
                 <table class="table m-0 align-middle table-hover">
@@ -17,63 +18,76 @@
                         <tr class="accordion">
                             <th class="bg-light" scope="row">First name</th>
                             <td class="bg-light fs-5">{{ user.first_name }}</td>
-                            <td class="bg-light text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                            <td class="bg-light text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i>
+                            </td>
                         </tr>
                         <tr class="panel">
                             <td class="bg-light text-end" scope="row">Edit first name</th>
-                            <form method="post">
-                                {% csrf_token %}
-                                <td class="bg-light align-middle edit-section-row"><input class="form-control rounded-0" type="text"
-                                        name="firstname-input"></td>
-                                <td class="bg-light text-end"><button class="bg-transparent border-0" type="submit" name="firstname_button" value="clicked"><i class='bi bi-chevron-right' style='font-size:24px'></i></button></td>
+                                <form method="post">
+                                    {% csrf_token %}
+                            <td class="bg-light align-middle edit-section-row"><input class="form-control rounded-0"
+                                    type="text" name="firstname-input"></td>
+                            <td class="bg-light text-end"><button class="bg-transparent border-0" type="submit"
+                                    name="firstname_button" value="clicked"><i class='bi bi-chevron-right'
+                                        style='font-size:24px'></i></button></td>
                             </form>
                         </tr>
                         <tr class="accordion">
                             <th class="bg-light" scope="row">Last name</th>
                             <td class="bg-light fs-5">{{ user.last_name }}</td>
-                            <td class="bg-light text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                            <td class="bg-light text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i>
+                            </td>
                         </tr>
                         <tr class="panel">
                             <td class="bg-light text-end" scope="row">Edit last name</th>
-                            <form method="post">
-                                {% csrf_token %}
-                                <td class="bg-light align-middle edit-section-row"><input class="form-control rounded-0" type="text"
-                                        name="lastname-input"></td>
-                                <td class="bg-light text-end"><button class="bg-transparent border-0" type="submit" name="lastname_button" value="clicked"><i class='bi bi-chevron-right' style='font-size:24px'></i></button></td>
+                                <form method="post">
+                                    {% csrf_token %}
+                            <td class="bg-light align-middle edit-section-row"><input class="form-control rounded-0"
+                                    type="text" name="lastname-input"></td>
+                            <td class="bg-light text-end"><button class="bg-transparent border-0" type="submit"
+                                    name="lastname_button" value="clicked"><i class='bi bi-chevron-right'
+                                        style='font-size:24px'></i></button></td>
                             </form>
                         </tr>
                         <tr class="accordion">
                             <th class="bg-light" scope="row">Email</th>
                             <td class="bg-light fs-5">{{ user.email }}</td>
-                            <td class="bg-light text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                            <td class="bg-light text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i>
+                            </td>
                         </tr>
                         <tr class="panel">
                             <td class="bg-light text-end" scope="row">New email</th>
-                            <form method="post">
-                                {% csrf_token %}
-                                <td class="bg-light align-middle edit-section-row"><input class="form-control rounded-0" type="email"
-                                        name="email-input"></td>
-                                <td class="bg-light text-end"><button class="bg-transparent border-0" type="submit" name="email_button" value="clicked"><i class='bi bi-chevron-right' style='font-size:24px'></i></button></td>
+                                <form method="post">
+                                    {% csrf_token %}
+                            <td class="bg-light align-middle edit-section-row"><input class="form-control rounded-0"
+                                    type="email" name="email-input"></td>
+                            <td class="bg-light text-end"><button class="bg-transparent border-0" type="submit"
+                                    name="email_button" value="clicked"><i class='bi bi-chevron-right'
+                                        style='font-size:24px'></i></button></td>
                             </form>
                         </tr>
                         <tr class="accordion">
                             <th class="bg-light" scope="row">Username</th>
                             <td class="bg-light fs-5">{{ user.username }}</td>
-                            <td class="bg-light text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                            <td class="bg-light text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i>
+                            </td>
                         </tr>
                         <tr class="panel">
                             <td class="bg-light text-end" scope="row">New username</th>
-                            <form method="post">
-                                {% csrf_token %}
-                                <td class="bg-light align-middle edit-section-row"><input class="form-control rounded-0" type="text"
-                                        name="username-input"></td>
-                                <td class="bg-light text-end"><button class="bg-transparent border-0" type="submit" name="username_button" value="clicked"><i class='bi bi-chevron-right' style='font-size:24px'></i></button></td>
+                                <form method="post">
+                                    {% csrf_token %}
+                            <td class="bg-light align-middle edit-section-row"><input class="form-control rounded-0"
+                                    type="text" name="username-input"></td>
+                            <td class="bg-light text-end"><button class="bg-transparent border-0" type="submit"
+                                    name="username_button" value="clicked"><i class='bi bi-chevron-right'
+                                        style='font-size:24px'></i></button></td>
                             </form>
                         </tr>
                         <tr class="accordion last-tr">
                             <th class="bg-light" scope="row"> Change Password</th>
                             <td class="bg-light"></td>
-                            <td class="bg-light text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i></td>
+                            <td class="bg-light text-end"><i class='bi bi-chevron-right' style='font-size:24px'></i>
+                            </td>
                         </tr>
                         <tr class="panel last-tr">
                             <th class="bg-light"></th>
@@ -81,7 +95,8 @@
                                 <form method="post">
                                     {% csrf_token %}
                                     {{ form.as_p }}
-                                <div class="d-grid gap-2 mb-3"><button class="btn btn-dark border-0 rounded-0" type="submit">Update password</button></div>
+                                    <div class="d-grid gap-2 mb-3"><button class="btn btn-dark border-0 rounded-0"
+                                            type="submit">Update password</button></div>
                                 </form>
                             </td>
                             <td class="bg-light"></td>
@@ -89,11 +104,13 @@
                 </table>
             </div>
             {% endif %}
+        </div>
     </div>
-</div>
 
-<div class="d-grid col-md-8 align-center">
-    <a class="btn btn-transparent fw-bold m-5 rounded-0" href="{% url 'tasks' %}">Return</a>
+    <div class="d-grid align-center">
+        <a class="btn btn-dark w-100 mt-3 rounded-0" href="{% url 'tasks' %}">Return</a>
+    </div>
+
 </div>
 
 <script>
@@ -120,11 +137,11 @@
 
     const resizeObserver = new ResizeObserver(entries => {
 
-    for (let entry of entries) {
+        for (let entry of entries) {
 
-        const newHeight = entry.contentRect.height;
-        window.scrollTo(0, document.body.scrollHeight);
-    }
+            const newHeight = entry.contentRect.height;
+            window.scrollTo(0, document.body.scrollHeight);
+        }
     });
 
     resizeObserver.observe(document.body);

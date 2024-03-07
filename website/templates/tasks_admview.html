@@ -27,8 +27,10 @@
                     <td>{{ task.content }}</td>
                     <td>{{ task.date_created }}</td>
                     <td>
-                        <a class="btn btn-outline-danger" href="{% url 'delete_task_adminview' task.id user_id%}">Delete</a>
-                        <a class="btn btn-outline-success" href="{% url 'update_task_adminview' task.id user_id %}">Update</a>
+                        <a class="btn btn-outline-danger"
+                            href="{% url 'delete_task_adminview' task.id user_id%}">Delete</a>
+                        <a class="btn btn-outline-success"
+                            href="{% url 'update_task_adminview' task.id user_id %}">Update</a>
                     </td>
                 </tr>
             </tbody>

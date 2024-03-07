@@ -19,9 +19,9 @@
         {% csrf_token %}
         {{ form.as_p }}
         <div class="d-grid gap-2">
-        {% if form.instance %}
+            {% if form.instance %}
             <p><b>To change the user's password use <a href="{% url 'change_password' user.id %}">this form</a></b></p>
-        {% endif %}
+            {% endif %}
             <button class="btn btn-dark rounded-0" type="submit">Save</button>
             <a class="btn btn-transparent rounded-0" href="{% url 'users' %}">Return</a>
         </div>
